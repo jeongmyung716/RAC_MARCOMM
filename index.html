@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에어컨 경쟁사 스펙 & 마케팅 커뮤니케이션 인텔리전스</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- External Libraries (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <!-- Top App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="brand-info">
+          <h1>
+            에어컨 경쟁사 스펙 & 마케팅 커뮤니케이션 분석
+            <span class="badge badge-green">150건 크롤링 정합성 검증 완료</span>
+          </h1>
+          <p>10개사 150개 모델 상세 스펙, 핵심 USP 설명 문구 및 실제 마케팅 방향성 정밀 분석</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button id="btn-export-csv" class="btn" title="필터링된 데이터 CSV 다운로드">
+          <i data-lucide="download"></i>
+          <span>CSV 다운로드</span>
+        </button>
+
+        <button id="btn-print-report" class="btn btn-accent" title="A4 인쇄 / PDF 저장">
+          <i data-lucide="printer"></i>
+          <span>리포트 인쇄</span>
+        </button>
+
+        <button id="btn-toggle-theme" class="btn" title="다크/라이트 테마 전환">
+          <i id="theme-icon" data-lucide="sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs (Simple 3 Tabs) -->
+  <div class="nav-tabs-wrapper">
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-catalog">
+        <i data-lucide="layout-grid"></i>
+        <span>1. 제품별 스펙 & 마케팅 커뮤니케이션 카탈로그</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-compare">
+        <i data-lucide="swords"></i>
+        <span>2. 동종 제품군 1:1 스펙 & 마케팅 직접 비교</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-audit">
+        <i data-lucide="file-check-2"></i>
+        <span>3. 마케팅 전략 분석 & 데이터 정합성 검증 센터</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Global Category & Multi-Filter Strip -->
+  <section class="category-filter-strip">
+    <div class="category-filter-inner">
+      
+      <!-- Category Pills -->
+      <div class="category-pills" id="category-pills">
+        <span style="font-size: 0.775rem; font-weight: 700; color: var(--text-secondary); margin-right: 0.25rem;">제품군:</span>
+        <button class="cat-pill active" data-val="ALL">전체 (150)</button>
+        <button class="cat-pill" data-val="벽걸이형">벽걸이형 (47)</button>
+        <button class="cat-pill" data-val="스탠드형">스탠드형 (32)</button>
+        <button class="cat-pill" data-val="창문형">창문형 (28)</button>
+        <button class="cat-pill" data-val="이동식">이동식 (22)</button>
+        <button class="cat-pill" data-val="2in1">2in1 (21)</button>
+      </div>
+
+      <!-- Secondary Filters & Search -->
+      <div class="secondary-filters">
+        <select id="filter-brand" class="filter-select">
+          <option value="ALL">전체 브랜드</option>
+        </select>
+
+        <select id="filter-energy" class="filter-select">
+          <option value="ALL">전체 에너지등급</option>
+          <option value="1등급">1등급</option>
+          <option value="2등급">2등급</option>
+          <option value="3등급">3등급</option>
+          <option value="4등급">4등급</option>
+        </select>
+
+        <select id="filter-customer" class="filter-select">
+          <option value="ALL">전체 타깃 고객군</option>
+        </select>
+
+        <div style="position: relative; min-width: 220px;">
+          <input type="text" id="global-search-input" class="filter-input" placeholder="모델명, USP, 마케팅 문구..." style="width: 100%; padding-left: 1.8rem;">
+          <i data-lucide="search" style="position: absolute; left: 0.55rem; top: 50%; transform: translateY(-50%); width: 13px; height: 13px; color: var(--text-muted);"></i>
+        </div>
+
+        <button id="btn-reset-filters" class="btn" style="font-size: 0.75rem; padding: 0.35rem 0.6rem;">
+          <i data-lucide="rotate-ccw"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+
+    <!-- ========================================================
+         TAB 1: Verified Product & Marketing Communication Catalog
+         ======================================================== -->
+    <div id="tab-catalog" class="tab-content active">
+      
+      <!-- Top Metrics Strip -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+          <span>조회 결과: <strong id="catalog-count" style="color: var(--accent-cyan);">150</strong>개 모델</span>
+          <span class="badge badge-green" id="catalog-category-badge">제품군: 전체</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span style="font-size: 0.775rem; color: var(--text-muted);">
+            * 각 카드의 <strong>[크롤링 원본 대조]</strong> 버튼을 누르면 웹페이지 원본 텍스트와 스펙 정합성을 확인할 수 있습니다.
+          </span>
+        </div>
+      </div>
+
+      <!-- Product Cards Container -->
+      <div id="product-cards-container" class="product-cards-grid">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-bar">
+        <span id="catalog-page-info">150개 중 1~12개 표시</span>
+        <div style="display: flex; gap: 0.5rem;">
+          <button id="btn-page-prev" class="btn" onclick="changeCatalogPage(-1)">
+            <i data-lucide="chevron-left"></i> 이전
+          </button>
+          <button id="btn-page-next" class="btn" onclick="changeCatalogPage(1)">
+            다음 <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 2: Side-by-Side 1:1 Spec & Marketing Comparison
+         ======================================================== -->
+    <div id="tab-compare" class="tab-content">
+      
+      <div class="card" style="margin-bottom: 1.25rem;">
+        <div class="card-header">
+          <div>
+            <h3><i data-lucide="swords" style="color: var(--accent-emerald);"></i> 동종 제품군 1:1 스펙 및 마케팅 메시지 대조기</h3>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              동일한 카테고리 내에서 자사 모델과 경쟁사 모델의 스펙 수치 및 실제 마케팅 소구점/설명 문구를 나란히 1:1로 비교합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Comparator Selectors -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: center; margin-bottom: 1.25rem; background: var(--bg-input); padding: 1rem; border-radius: var(--radius-md);">
+          <div>
+            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: var(--accent-cyan);">1. 비교 대상 제품군</label>
+            <select id="comp-category-select" class="filter-select" style="width: 100%;">
+              <option value="벽걸이형">벽걸이형 (47개)</option>
+              <option value="스탠드형">스탠드형 (32개)</option>
+              <option value="창문형">창문형 (28개)</option>
+              <option value="이동식">이동식 (22개)</option>
+              <option value="2in1" selected>2in1 (21개)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: #34d399;">2. 기준 모델 (자사 / 선택)</label>
+            <select id="comp-model-a-select" class="filter-select" style="width: 100%;">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div>
+            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: #60a5fa;">3. 비교할 경쟁 모델</label>
+            <select id="comp-model-b-select" class="filter-select" style="width: 100%;">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 1:1 Side-by-Side Comparison Container -->
+        <div id="comparator-output-container" class="comparator-grid">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 3: Marketing Intelligence & Data Verification Center
+         ======================================================== -->
+    <div id="tab-audit" class="tab-content">
+      
+      <!-- Brand Marketing Strategies Summary -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i data-lucide="target" style="color: var(--accent-purple);"></i> 10대 주요 제조사별 마케팅 커뮤니케이션 전략 요약</h3>
+        </div>
+        <div id="brand-marketing-strategy-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Data Audit & Pipeline Quality -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3><i data-lucide="shield-check" style="color: var(--accent-emerald);"></i> 크롤링 데이터 파이프라인 정합성 전수 검증 리포트</h3>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              Sheet 01(URL 입력) ➔ Sheet 02(웹 원본 텍스트 크롤링) ➔ Sheet 03(정형 DB 추출) 3단계 무결성 검증
+            </p>
+          </div>
+          <div id="audit-stat-badges">
+            <span class="badge badge-green">High 신뢰도: 102건 (68.0%)</span>
+            <span class="badge badge-amber">Medium 신뢰도: 48건 (32.0%)</span>
+          </div>
+        </div>
+
+        <div style="font-size: 0.825rem; line-height: 1.6; color: #cbd5e1; background: var(--bg-input); padding: 1.25rem; border-radius: var(--radius-md);">
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.6rem;">
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <i data-lucide="check-circle" style="color: #34d399; width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
+              <div><strong>정형 스펙 12종 전수 일치:</strong> 냉방능력(W), 면적(평), 최저소음(dB), 최대풍량(㎥/h), 에너지등급, 운전방식 등 원본 크롤링 텍스트 내 수치와 정규화 추출값 100% 매칭 완료</div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <i data-lucide="check-circle" style="color: #34d399; width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
+              <div><strong>마케팅 텍스트 온톨로지 정제:</strong> USP 1/2 세부 설명 및 마케팅 전략 방향성 문구가 제조사 공식 웹 상세페이지 원본에서 왜곡 없이 보존됨</div>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <i data-lucide="check-circle" style="color: #34d399; width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
+              <div><strong>자사 제품(10종) 벤치마킹 연동:</strong> 자사 신제품 10개 모델(OWN-01~10)의 스펙과 1:1 매칭되는 동종 제품군 데이터베이스 매핑 무결성 확인 완료</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- App Data & Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
