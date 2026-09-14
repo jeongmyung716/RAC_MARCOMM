@@ -6,14 +6,14 @@
 :root {
   --bg-primary: #0b0f19;
   --bg-secondary: #111827;
-  --bg-card: rgba(17, 24, 39, 0.9);
+  --bg-card: rgba(17, 24, 39, 0.95);
   --bg-card-hover: rgba(31, 41, 55, 0.95);
   --bg-input: #1f2937;
   --border-color: rgba(75, 85, 99, 0.4);
   --border-color-hover: rgba(107, 114, 128, 0.6);
   --text-primary: #f9fafb;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
   
   --accent-primary: #3b82f6;
   --accent-primary-hover: #2563eb;
@@ -23,6 +23,42 @@
   --accent-rose: #f43f5e;
   --accent-purple: #8b5cf6;
   --accent-indigo: #6366f1;
+
+  --marcom-bg: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(88, 28, 135, 0.25));
+  --marcom-border: rgba(99, 102, 241, 0.35);
+  --marcom-header: #c7d2fe;
+  --marcom-text: #f1f5f9;
+  --marcom-title: #93c5fd;
+  --marcom-quote-bg: rgba(0, 0, 0, 0.35);
+  --marcom-quote-text: #cbd5e1;
+  
+  --raw-text-bg: #111827;
+  --raw-text-color: #cbd5e1;
+  --price-color: #34d399;
+  
+  --badge-blue-bg: rgba(59, 130, 246, 0.18);
+  --badge-blue-text: #60a5fa;
+  --badge-blue-border: rgba(59, 130, 246, 0.35);
+  
+  --badge-green-bg: rgba(16, 185, 129, 0.18);
+  --badge-green-text: #34d399;
+  --badge-green-border: rgba(16, 185, 129, 0.35);
+  
+  --badge-amber-bg: rgba(245, 158, 11, 0.18);
+  --badge-amber-text: #fbbf24;
+  --badge-amber-border: rgba(245, 158, 11, 0.35);
+  
+  --badge-rose-bg: rgba(244, 63, 94, 0.18);
+  --badge-rose-text: #fb7185;
+  --badge-rose-border: rgba(244, 63, 94, 0.35);
+  
+  --badge-purple-bg: rgba(139, 92, 246, 0.18);
+  --badge-purple-text: #a78bfa;
+  --badge-purple-border: rgba(139, 92, 246, 0.35);
+  
+  --badge-cyan-bg: rgba(6, 182, 212, 0.18);
+  --badge-cyan-text: #22d3ee;
+  --badge-cyan-border: rgba(6, 182, 212, 0.35);
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
@@ -39,19 +75,65 @@
 }
 
 [data-theme="light"] {
-  --bg-primary: #f3f4f6;
+  --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.95);
-  --bg-card-hover: #f9fafb;
-  --bg-input: #f3f4f6;
-  --border-color: rgba(229, 231, 235, 0.9);
-  --border-color-hover: rgba(209, 213, 219, 1);
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-input: #f1f5f9;
+  --border-color: #cbd5e1;
+  --border-color-hover: #94a3b8;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  
+  --accent-primary: #2563eb;
+  --accent-primary-hover: #1d4ed8;
+  --accent-cyan: #0284c7;
+  --accent-emerald: #059669;
+  --accent-amber: #d97706;
+  --accent-rose: #e11d48;
+  --accent-purple: #7c3aed;
+  --accent-indigo: #4f46e5;
+
+  --marcom-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eff6ff 100%);
+  --marcom-border: #cbd5e1;
+  --marcom-header: #3730a3;
+  --marcom-text: #1e293b;
+  --marcom-title: #1d4ed8;
+  --marcom-quote-bg: #ffffff;
+  --marcom-quote-text: #1e293b;
+  
+  --raw-text-bg: #f8fafc;
+  --raw-text-color: #1e293b;
+  --price-color: #047857;
+  
+  --badge-blue-bg: #eff6ff;
+  --badge-blue-text: #1d4ed8;
+  --badge-blue-border: #bfdbfe;
+  
+  --badge-green-bg: #f0fdf4;
+  --badge-green-text: #15803d;
+  --badge-green-border: #bbf7d0;
+  
+  --badge-amber-bg: #fffbeb;
+  --badge-amber-text: #b45309;
+  --badge-amber-border: #fde68a;
+  
+  --badge-rose-bg: #fff1f2;
+  --badge-rose-text: #be123c;
+  --badge-rose-border: #fecdd3;
+  
+  --badge-purple-bg: #faf5ff;
+  --badge-purple-text: #6d28d9;
+  --badge-purple-border: #e9d5ff;
+  
+  --badge-cyan-bg: #ecfeff;
+  --badge-cyan-text: #0e7490;
+  --badge-cyan-border: #a5f3fc;
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -195,16 +277,16 @@ body {
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-full);
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
 }
 
-.badge-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-.badge-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-.badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
-.badge-purple { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
-.badge-cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+.badge-blue { background: var(--badge-blue-bg); color: var(--badge-blue-text); border: 1px solid var(--badge-blue-border); }
+.badge-green { background: var(--badge-green-bg); color: var(--badge-green-text); border: 1px solid var(--badge-green-border); }
+.badge-amber { background: var(--badge-amber-bg); color: var(--badge-amber-text); border: 1px solid var(--badge-amber-border); }
+.badge-rose { background: var(--badge-rose-bg); color: var(--badge-rose-text); border: 1px solid var(--badge-rose-border); }
+.badge-purple { background: var(--badge-purple-bg); color: var(--badge-purple-text); border: 1px solid var(--badge-purple-border); }
+.badge-cyan { background: var(--badge-cyan-bg); color: var(--badge-cyan-text); border: 1px solid var(--badge-cyan-border); }
 
 /* Navigation Tabs */
 .nav-tabs-wrapper {
@@ -428,7 +510,7 @@ body {
 .product-price-val {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #34d399;
+  color: var(--price-color);
 }
 
 .product-price-unit {
@@ -445,6 +527,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
   font-size: 0.775rem;
+  border: 1px solid var(--border-color);
 }
 
 .spec-item {
@@ -456,6 +539,7 @@ body {
 .spec-item-label {
   color: var(--text-muted);
   font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .spec-item-val {
@@ -472,22 +556,24 @@ body {
 
 .feat-tag {
   font-size: 0.7rem;
-  padding: 0.15rem 0.45rem;
+  padding: 0.18rem 0.5rem;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-secondary);
+  background: var(--bg-input);
+  color: var(--text-muted);
   border: 1px solid var(--border-color);
+  font-weight: 600;
 }
 .feat-tag.active {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border-color: rgba(16, 185, 129, 0.4);
+  background: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border-color: var(--badge-green-border);
+  font-weight: 700;
 }
 
 /* Marketing Communication Box */
 .product-marcom-box {
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(88, 28, 135, 0.2));
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: var(--marcom-bg);
+  border: 1px solid var(--marcom-border);
   border-radius: var(--radius-md);
   padding: 0.875rem;
   display: flex;
@@ -498,7 +584,7 @@ body {
 .marcom-header {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #c7d2fe;
+  color: var(--marcom-header);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -506,25 +592,26 @@ body {
 
 .marcom-usp-item {
   font-size: 0.8rem;
-  line-height: 1.4;
-  color: #e2e8f0;
+  line-height: 1.45;
+  color: var(--marcom-text);
 }
 
 .marcom-usp-title {
   font-weight: 700;
-  color: #93c5fd;
+  color: var(--marcom-title);
   margin-right: 0.35rem;
 }
 
 .marcom-direction-quote {
   font-size: 0.775rem;
   font-style: italic;
-  color: #cbd5e1;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 0.5rem 0.65rem;
+  color: var(--marcom-quote-text);
+  background: var(--marcom-quote-bg);
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border-color);
   border-left: 3px solid var(--accent-indigo);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .marcom-target-row {
@@ -560,15 +647,15 @@ body {
 
 .raw-text-content {
   display: none;
-  background: var(--bg-input);
+  background: var(--raw-text-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 0.75rem;
   margin-top: 0.5rem;
-  font-family: 'Consolas', monospace;
+  font-family: 'Consolas', 'Courier New', monospace;
   font-size: 0.75rem;
   white-space: pre-wrap;
-  color: #cbd5e1;
+  color: var(--raw-text-color);
   max-height: 180px;
   overflow-y: auto;
   line-height: 1.5;
@@ -620,8 +707,12 @@ body {
 .comparison-table th {
   background: var(--bg-input);
   color: var(--text-secondary);
-  font-weight: 600;
+  font-weight: 700;
   width: 35%;
+}
+
+.comparison-table td {
+  color: var(--text-primary);
 }
 
 /* Pagination */

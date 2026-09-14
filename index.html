@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,7 @@
         </button>
 
         <button id="btn-toggle-theme" class="btn" title="다크/라이트 테마 전환">
-          <i id="theme-icon" data-lucide="sun"></i>
+          <i id="theme-icon" data-lucide="moon"></i>
         </button>
       </div>
     </div>
@@ -179,7 +179,7 @@
         </div>
 
         <!-- Comparator Selectors -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: center; margin-bottom: 1.25rem; background: var(--bg-input); padding: 1rem; border-radius: var(--radius-md);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: center; margin-bottom: 1.25rem; background: var(--bg-input); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
           <div>
             <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: var(--accent-cyan);">1. 비교 대상 제품군</label>
             <select id="comp-category-select" class="filter-select" style="width: 100%;">
@@ -192,14 +192,14 @@
           </div>
 
           <div>
-            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: #34d399;">2. 기준 모델 (자사 / 선택)</label>
+            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: var(--accent-emerald);">2. 기준 모델 (자사 / 선택)</label>
             <select id="comp-model-a-select" class="filter-select" style="width: 100%;">
               <!-- Populated by JS -->
             </select>
           </div>
 
           <div>
-            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: #60a5fa;">3. 비교할 경쟁 모델</label>
+            <label class="filter-label" style="margin-bottom: 0.35rem; font-weight: 700; color: var(--accent-primary);">3. 비교할 경쟁 모델</label>
             <select id="comp-model-b-select" class="filter-select" style="width: 100%;">
               <!-- Populated by JS -->
             </select>
@@ -245,18 +245,18 @@
           </div>
         </div>
 
-        <div style="font-size: 0.825rem; line-height: 1.6; color: #cbd5e1; background: var(--bg-input); padding: 1.25rem; border-radius: var(--radius-md);">
+        <div style="font-size: 0.825rem; line-height: 1.6; color: var(--text-secondary); background: var(--bg-input); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
           <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.6rem;">
             <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
-              <i data-lucide="check-circle" style="color: #34d399; width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
+              <i data-lucide="check-circle" style="color: var(--accent-emerald); width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
               <div><strong>정형 스펙 12종 전수 일치:</strong> 냉방능력(W), 면적(평), 최저소음(dB), 최대풍량(㎥/h), 에너지등급, 운전방식 등 원본 크롤링 텍스트 내 수치와 정규화 추출값 100% 매칭 완료</div>
             </li>
             <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
-              <i data-lucide="check-circle" style="color: #34d399; width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
+              <i data-lucide="check-circle" style="color: var(--accent-emerald); width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
               <div><strong>마케팅 텍스트 온톨로지 정제:</strong> USP 1/2 세부 설명 및 마케팅 전략 방향성 문구가 제조사 공식 웹 상세페이지 원본에서 왜곡 없이 보존됨</div>
             </li>
             <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
-              <i data-lucide="check-circle" style="color: #34d399; width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
+              <i data-lucide="check-circle" style="color: var(--accent-emerald); width: 16px; height: 16px; margin-top: 0.2rem; flex-shrink: 0;"></i>
               <div><strong>자사 제품(10종) 벤치마킹 연동:</strong> 자사 신제품 10개 모델(OWN-01~10)의 스펙과 1:1 매칭되는 동종 제품군 데이터베이스 매핑 무결성 확인 완료</div>
             </li>
           </ul>
@@ -274,7 +274,7 @@
       <div class="card" style="margin-bottom: 1.25rem;">
         <div class="card-header">
           <div>
-            <h3><i data-lucide="sparkles" style="color: #a855f7;"></i> AI 제품 스펙 자동 추출 & 경쟁사 모델 등록 파이프라인</h3>
+            <h3><i data-lucide="sparkles" style="color: var(--accent-purple);"></i> AI 제품 스펙 자동 추출 & 경쟁사 모델 등록 파이프라인</h3>
             <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
               제조사 공식몰 또는 이커머스 웹페이지 URL 및 텍스트를 입력하면, AI 엔진이 12종 핵심 스펙과 마케팅 USP, 소구 문구를 자동 파싱하여 실시간 DB에 즉시 등록합니다.
             </p>
@@ -307,7 +307,7 @@
               </button>
               <button class="sample-pill-btn" onclick="loadSampleExtractorTemplate('lg')">
                 <span>[LG] 2026 휘센 타워II 스페셜 20평형</span>
-                <span class="badge badge-pink">원클릭 입력</span>
+                <span class="badge badge-rose">원클릭 입력</span>
               </button>
               <button class="sample-pill-btn" onclick="loadSampleExtractorTemplate('carrier')">
                 <span>[캐리어] 2026 올 뉴 18단 AI 에어로 18평형</span>
@@ -338,8 +338,8 @@
         <!-- Right: Extracted Result & Live Verification Form -->
         <div class="extracted-preview-box">
           <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-            <h4 style="font-size: 0.95rem; font-weight: 700; color: #34d399; display: flex; align-items: center; gap: 0.4rem;">
-              <i data-lucide="check-circle" style="color: #34d399;"></i> 2. AI 추출 결과 검증 및 DB 등록
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-emerald); display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="check-circle" style="color: var(--accent-emerald);"></i> 2. AI 추출 결과 검증 및 DB 등록
             </h4>
             <span id="extractor-status-badge" class="badge badge-amber">대기 중 (추출 전)</span>
           </div>

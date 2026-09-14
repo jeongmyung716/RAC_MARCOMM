@@ -16,7 +16,7 @@ const state = {
   catalogPage: 1,
   catalogPageSize: 8,
   activeTab: 'tab-catalog',
-  theme: 'dark',
+  theme: 'light',
   comparator: {
     category: '2in1',
     modelAId: 'OWN-01',
@@ -26,16 +26,16 @@ const state = {
 
 const BRAND_COLORS = {
   '캐리어': '#0284c7',
-  '삼성전자': '#2563eb',
+  '삼성전자': '#1d4ed8',
   '센추리': '#0d9488',
   '위닉스': '#7c3aed',
-  'LG전자': '#e11d48',
-  '하이얼': '#ea580c',
+  'LG전자': '#be123c',
+  '하이얼': '#c2410c',
   '위니아': '#059669',
-  '파세코': '#d97706',
-  'TCL': '#dc2626',
-  '신일전자': '#4f46e5',
-  '자사': '#10b981'
+  '파세코': '#b45309',
+  'TCL': '#b91c1c',
+  '신일전자': '#4338ca',
+  '자사': '#059669'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -383,7 +383,7 @@ function renderCatalog() {
       <div class="product-card-top">
         <div class="product-brand-title">
           <div style="display: flex; align-items: center; gap: 0.4rem;">
-            <span class="product-brand-name" style="color: ${BRAND_COLORS[item.brand] || '#38bdf8'};">${item.brand}</span>
+            <span class="product-brand-name" style="color: ${BRAND_COLORS[item.brand] || 'var(--accent-cyan)'};">${item.brand}</span>
             <span class="badge badge-blue">${item.product_type}</span>
             <span class="badge ${item.data_confidence === 'High' ? 'badge-green' : 'badge-amber'}">
               <i data-lucide="check-circle-2" style="width: 10px; height: 10px;"></i> ${item.data_confidence} 신뢰도
@@ -411,7 +411,7 @@ function renderCatalog() {
         </div>
         <div class="spec-item">
           <span class="spec-item-label">에너지 등급</span>
-          <span class="spec-item-val" style="color: ${item.energy_grade === '1등급' ? '#34d399' : '#fbbf24'};">${item.energy_grade} (${item.operation_type})</span>
+          <span class="spec-item-val" style="color: ${item.energy_grade === '1등급' ? 'var(--accent-emerald)' : 'var(--accent-amber)'};">${item.energy_grade} (${item.operation_type})</span>
         </div>
         <div class="spec-item">
           <span class="spec-item-label">최대 풍량</span>
@@ -440,7 +440,7 @@ function renderCatalog() {
       <!-- Marketing Communication Block (Deep) -->
       <div class="product-marcom-box">
         <div class="marcom-header">
-          <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle; color: #a78bfa;"></i> 핵심 마케팅 커뮤니케이션 & USP</span>
+          <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle; color: var(--accent-purple);"></i> 핵심 마케팅 커뮤니케이션 & USP</span>
           <span class="badge badge-purple">${item.competitive_keyword}</span>
         </div>
 
@@ -581,8 +581,8 @@ function renderComparator() {
         <span class="badge badge-purple">${itemA.product_type}</span>
       </div>
       <div>
-        <h4 style="font-size: 1.15rem; font-weight: 800; color: ${BRAND_COLORS[itemA.brand] || '#38bdf8'};">[${itemA.brand}] ${itemA.model_name}</h4>
-        <div style="font-size: 1.25rem; font-weight: 800; color: #34d399; margin-top: 0.25rem;">
+        <h4 style="font-size: 1.15rem; font-weight: 800; color: ${BRAND_COLORS[itemA.brand] || 'var(--accent-cyan)'};">[${itemA.brand}] ${itemA.model_name}</h4>
+        <div style="font-size: 1.25rem; font-weight: 800; color: var(--price-color); margin-top: 0.25rem;">
           ${(itemA.price_num / 10000).toLocaleString()}만원 <span style="font-size: 0.75rem; color: var(--text-muted);">(${itemA.krw_per_w.toFixed(0)} 원/W)</span>
         </div>
       </div>
@@ -603,10 +603,10 @@ function renderComparator() {
           <span class="badge badge-cyan">${itemA.competitive_keyword || '핵심 차별화'}</span>
         </div>
         <div class="marcom-usp-item">
-          <strong style="color: #93c5fd;">[USP 1] ${itemA.usp_1}:</strong> ${itemA.usp_1_description || '핵심 기술력 소구'}
+          <strong class="marcom-usp-title">[USP 1] ${itemA.usp_1}:</strong> ${itemA.usp_1_description || '핵심 기술력 소구'}
         </div>
         <div class="marcom-usp-item">
-          <strong style="color: #93c5fd;">[USP 2] ${itemA.usp_2}:</strong> ${itemA.usp_2_description || '편의 기능 소구'}
+          <strong class="marcom-usp-title">[USP 2] ${itemA.usp_2}:</strong> ${itemA.usp_2_description || '편의 기능 소구'}
         </div>
         <div class="marcom-direction-quote">
           "${itemA.marketing_direction || '사용자 편의성과 냉방 본연의 성능을 균형 있게 강조'}"
@@ -627,8 +627,8 @@ function renderComparator() {
         <span class="badge badge-purple">${itemB.product_type}</span>
       </div>
       <div>
-        <h4 style="font-size: 1.15rem; font-weight: 800; color: ${BRAND_COLORS[itemB.brand] || '#38bdf8'};">[${itemB.brand}] ${itemB.model_name}</h4>
-        <div style="font-size: 1.25rem; font-weight: 800; color: #34d399; margin-top: 0.25rem;">
+        <h4 style="font-size: 1.15rem; font-weight: 800; color: ${BRAND_COLORS[itemB.brand] || 'var(--accent-cyan)'};">[${itemB.brand}] ${itemB.model_name}</h4>
+        <div style="font-size: 1.25rem; font-weight: 800; color: var(--price-color); margin-top: 0.25rem;">
           ${(itemB.price_num / 10000).toLocaleString()}만원 <span style="font-size: 0.75rem; color: var(--text-muted);">(${itemB.krw_per_w.toFixed(0)} 원/W)</span>
         </div>
       </div>
@@ -649,10 +649,10 @@ function renderComparator() {
           <span class="badge badge-cyan">${itemB.competitive_keyword || '핵심 차별화'}</span>
         </div>
         <div class="marcom-usp-item">
-          <strong style="color: #93c5fd;">[USP 1] ${itemB.usp_1}:</strong> ${itemB.usp_1_description || '핵심 기술력 소구'}
+          <strong class="marcom-usp-title">[USP 1] ${itemB.usp_1}:</strong> ${itemB.usp_1_description || '핵심 기술력 소구'}
         </div>
         <div class="marcom-usp-item">
-          <strong style="color: #93c5fd;">[USP 2] ${itemB.usp_2}:</strong> ${itemB.usp_2_description || '편의 기능 소구'}
+          <strong class="marcom-usp-title">[USP 2] ${itemB.usp_2}:</strong> ${itemB.usp_2_description || '편의 기능 소구'}
         </div>
         <div class="marcom-direction-quote">
           "${itemB.marketing_direction || '사용자 편의성과 냉방 본연의 성능을 균형 있게 강조'}"
@@ -710,9 +710,9 @@ function renderAuditCenter() {
   });
 
   container.innerHTML = brandStats.map(b => `
-    <div class="card" style="padding: 1rem; background: var(--bg-input); border-color: rgba(75, 85, 99, 0.5);">
+    <div class="card" style="padding: 1rem; background: var(--bg-input); border-color: var(--border-color);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-        <h4 style="font-size: 0.95rem; font-weight: 800; color: ${BRAND_COLORS[b.brand] || '#38bdf8'};">${b.brand}</h4>
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: ${BRAND_COLORS[b.brand] || 'var(--accent-cyan)'};">${b.brand}</h4>
         <span class="badge badge-blue">${b.count}개 모델 (평균 ${b.avgPrice}만)</span>
       </div>
       <div style="font-size: 0.775rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.35rem;">
