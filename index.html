@@ -68,6 +68,10 @@
         <i data-lucide="file-check-2"></i>
         <span>3. 마케팅 전략 분석 & 데이터 정합성 검증 센터</span>
       </button>
+      <button class="tab-btn" data-tab="tab-extractor">
+        <i data-lucide="sparkles"></i>
+        <span>4. ✨ AI 자동 스펙 추출 & 모델 등록</span>
+      </button>
     </nav>
   </div>
 
@@ -261,7 +265,241 @@
 
     </div>
 
+    <!-- ========================================================
+         TAB 4: AI Auto-Extractor & Model Registration Center
+         ======================================================== -->
+    <div id="tab-extractor" class="tab-content">
+      
+      <!-- Top Instruction Card -->
+      <div class="card" style="margin-bottom: 1.25rem;">
+        <div class="card-header">
+          <div>
+            <h3><i data-lucide="sparkles" style="color: #a855f7;"></i> AI 제품 스펙 자동 추출 & 경쟁사 모델 등록 파이프라인</h3>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              제조사 공식몰 또는 이커머스 웹페이지 URL 및 텍스트를 입력하면, AI 엔진이 12종 핵심 스펙과 마케팅 USP, 소구 문구를 자동 파싱하여 실시간 DB에 즉시 등록합니다.
+            </p>
+          </div>
+          <div>
+            <span class="badge badge-purple"><i data-lucide="zap" style="width: 12px; height: 12px;"></i> AI 온톨로지 파싱 엔진 가동 중</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Two-Column Layout -->
+      <div class="ai-extractor-layout">
+        
+        <!-- Left: Input & Source Text Box -->
+        <div class="ai-input-card">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="file-input" style="color: var(--accent-cyan);"></i> 1. 제품 정보 / 웹 텍스트 입력
+            </h4>
+            <span style="font-size: 0.725rem; color: var(--text-muted);">원클릭 템플릿 지원</span>
+          </div>
+
+          <!-- Quick Template Pills -->
+          <div class="sample-pills-container">
+            <span style="font-size: 0.725rem; font-weight: 700; color: var(--text-secondary);">⚡ 원클릭 샘플 데이터 불러오기:</span>
+            <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+              <button class="sample-pill-btn" onclick="loadSampleExtractorTemplate('samsung')">
+                <span>[삼성] 2026 비스포크 무풍 클래식 19평형</span>
+                <span class="badge badge-blue">원클릭 입력</span>
+              </button>
+              <button class="sample-pill-btn" onclick="loadSampleExtractorTemplate('lg')">
+                <span>[LG] 2026 휘센 타워II 스페셜 20평형</span>
+                <span class="badge badge-pink">원클릭 입력</span>
+              </button>
+              <button class="sample-pill-btn" onclick="loadSampleExtractorTemplate('carrier')">
+                <span>[캐리어] 2026 올 뉴 18단 AI 에어로 18평형</span>
+                <span class="badge badge-cyan">원클릭 입력</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- URL Input Field -->
+          <div class="form-group-item">
+            <label for="extractor-url-input">제품 공식 페이지 / 쇼핑몰 URL</label>
+            <input type="text" id="extractor-url-input" placeholder="https://www.samsung.com/... 또는 https://www.lge.co.kr/...">
+          </div>
+
+          <!-- Raw Text / HTML / Specs Description Textarea -->
+          <div class="form-group-item">
+            <label for="extractor-raw-text">웹페이지 본문 텍스트 / 스펙 설명문 (직접 붙여넣기)</label>
+            <textarea id="extractor-raw-text" rows="10" placeholder="제조사 공식 제품 페이지의 상세 스펙 표, 마케팅 소개 문구, 제품 특징 텍스트를 그대로 복사하여 붙여넣으세요..."></textarea>
+          </div>
+
+          <!-- Action Button -->
+          <button id="btn-run-ai-extract" class="btn-ai-extract">
+            <i data-lucide="sparkles"></i>
+            <span>AI 자동 스펙 & 마컴 분석 추출 실행</span>
+          </button>
+        </div>
+
+        <!-- Right: Extracted Result & Live Verification Form -->
+        <div class="extracted-preview-box">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: #34d399; display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="check-circle" style="color: #34d399;"></i> 2. AI 추출 결과 검증 및 DB 등록
+            </h4>
+            <span id="extractor-status-badge" class="badge badge-amber">대기 중 (추출 전)</span>
+          </div>
+
+          <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">
+            추출된 스펙과 마케팅 문구를 확인 및 필요 시 수정한 후 아래 <strong>[대시보드 DB에 즉시 등록]</strong> 버튼을 누르세요.
+          </p>
+
+          <!-- Form Grid -->
+          <div class="form-field-grid">
+            <div class="form-group-item">
+              <label>제조사 브랜드</label>
+              <select id="ext-brand">
+                <option value="삼성전자">삼성전자</option>
+                <option value="LG전자">LG전자</option>
+                <option value="캐리어">캐리어</option>
+                <option value="파세코">파세코</option>
+                <option value="위닉스">위닉스</option>
+                <option value="위니아">위니아</option>
+                <option value="신일전자">신일전자</option>
+                <option value="센추리">센추리</option>
+                <option value="하이얼">하이얼</option>
+                <option value="TCL">TCL</option>
+                <option value="기타">기타 제조사</option>
+              </select>
+            </div>
+
+            <div class="form-group-item">
+              <label>모델명</label>
+              <input type="text" id="ext-model-name" placeholder="예: AF19D7934WFN">
+            </div>
+
+            <div class="form-group-item">
+              <label>제품군 분류</label>
+              <select id="ext-product-type">
+                <option value="2in1">2in1</option>
+                <option value="스탠드형">스탠드형</option>
+                <option value="벽걸이형">벽걸이형</option>
+                <option value="창문형">창문형</option>
+                <option value="이동식">이동식</option>
+              </select>
+            </div>
+
+            <div class="form-group-item">
+              <label>출고가/판매가 (원)</label>
+              <input type="number" id="ext-price" placeholder="예: 2850000">
+            </div>
+
+            <div class="form-group-item">
+              <label>정격 냉방능력 (W)</label>
+              <input type="number" id="ext-capacity-w" placeholder="예: 7700">
+            </div>
+
+            <div class="form-group-item">
+              <label>냉방면적 (평)</label>
+              <input type="number" step="0.1" id="ext-capacity-pyeong" placeholder="예: 19.0">
+            </div>
+
+            <div class="form-group-item">
+              <label>최저소음 (dB)</label>
+              <input type="number" step="0.1" id="ext-noise" placeholder="예: 31.0">
+            </div>
+
+            <div class="form-group-item">
+              <label>최대풍량 (㎥/h)</label>
+              <input type="number" id="ext-air-vol" placeholder="예: 1100">
+            </div>
+
+            <div class="form-group-item">
+              <label>에너지소비효율등급</label>
+              <select id="ext-energy-grade">
+                <option value="1등급">1등급</option>
+                <option value="2등급">2등급</option>
+                <option value="3등급">3등급</option>
+                <option value="4등급">4등급</option>
+                <option value="5등급">5등급</option>
+              </select>
+            </div>
+
+            <div class="form-group-item">
+              <label>핵심 타깃 고객군</label>
+              <input type="text" id="ext-target-customer" placeholder="예: 3~4인 프리미엄 아파트 가구">
+            </div>
+          </div>
+
+          <!-- Feature Flags -->
+          <div class="form-group-item">
+            <label>스마트 & 케어 부가기능 탐지</label>
+            <div class="feature-checkbox-grid">
+              <label class="checkbox-label">
+                <input type="checkbox" id="ext-feat-wifi" checked> Wi-Fi 원격제어
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="ext-feat-dry" checked> 자동건조 / 열교환기 세척
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="ext-feat-air" checked> 공기청정 / CAC
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="ext-feat-dehumid" checked> 독립 제습 기능
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="ext-feat-sleep" checked> 수면 / 무풍 케어 모드
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="ext-feat-voice" checked> AI 음성인식 지원
+              </label>
+            </div>
+          </div>
+
+          <!-- MarCom USPs -->
+          <div class="form-group-item">
+            <label>USP 1 (핵심 소구점 & 상세 문구)</label>
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem;">
+              <input type="text" id="ext-usp1" placeholder="예: 무풍 쾌적 지능형 냉방">
+              <input type="text" id="ext-usp1-desc" placeholder="예: 직바람 없이 쾌적한 27만 개 마이크로홀 기류 제어">
+            </div>
+          </div>
+
+          <div class="form-group-item">
+            <label>USP 2 (보조 소구점 & 상세 문구)</label>
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem;">
+              <input type="text" id="ext-usp2" placeholder="예: AI 절전 3.0 모드">
+              <input type="text" id="ext-usp2-desc" placeholder="예: 상황별 맞춤 절전으로 최대 35% 소비전력 절감">
+            </div>
+          </div>
+
+          <div class="form-group-item">
+            <label>마케팅 커뮤니케이션 전략 방향성 (인용구)</label>
+            <input type="text" id="ext-marketing-direction" placeholder="예: 직바람 없는 편안함과 AI 기반 스마트 맞춤 에너지 관리를 통한 프리미엄 가치 강조">
+          </div>
+
+          <div class="form-group-item">
+            <label>경쟁 차별화 핵심 키워드</label>
+            <input type="text" id="ext-comp-keyword" placeholder="예: AI 무풍 풀케어 & 초절전">
+          </div>
+
+          <div class="form-group-item">
+            <label>공식 제품 링크 / 원본 출처</label>
+            <input type="text" id="ext-product-url" placeholder="https://...">
+          </div>
+
+          <!-- Submit Button -->
+          <button id="btn-save-extracted-db" class="btn btn-accent" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; font-weight: 800; justify-content: center; margin-top: 0.5rem;">
+            <i data-lucide="database"></i>
+            <span>대시보드 DB에 신규 모델로 즉시 등록</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
   </main>
+
+  <!-- Toast Notification Alert -->
+  <div id="toast-alert" class="toast-alert">
+    <i data-lucide="check-circle-2"></i>
+    <span id="toast-message">모델이 성공적으로 등록되었습니다!</span>
+  </div>
 
   <!-- App Data & Scripts -->
   <script src="data.js"></script>
